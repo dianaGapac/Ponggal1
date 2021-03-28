@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+
+import data from './data';
+import Menu from  './components/Menu';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <div class="grid-container">
+      <header class="row">
+        <div>
+          <a class="brand" href="index.html">PONGGAL</a>
+        </div>
+        <div>
+          <a href="cart.html">Cart</a>
+          <a href="signin.html">Sign In</a>
+        </div>
       </header>
+      <main>
+        <div>
+        <div class="row center">
+        {
+          data.menus.map(menu =>(
+            <Menu key ={menu._id} menu={menu}></Menu>
+          ))
+        }
+         </div>
+        </div>
+      </main>
+      <footer class="row center">All right reserved</footer>
+    </div>
     </div>
   );
 }
