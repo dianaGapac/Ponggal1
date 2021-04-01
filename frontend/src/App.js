@@ -3,7 +3,7 @@ import data from './data';
 import Menu from  './components/Menu';
 import {BrowserRouter, Route} from 'react-router-dom';
 import MenuScreen from './screens/MenuScreen';
-import MenusScreen from './screens/MenusScreen';
+import MenuListScreen from './screens/MenuListScreen';
 
 function App() {
   return (
@@ -22,20 +22,8 @@ function App() {
       </header>
       <main>
       <Route path='/menu/:id' component={MenuScreen} />
-      <Route path='/' component={MenusScreen} exact/> 
-
-
-        <div>
-        <div class="row center">
-        {
-          data.menus.map(menu =>(
-            <Menu key ={menu._id} menu={menu}></Menu>
-          ))
-        }
-         </div>
-        </div>
-
-     
+      <Route path='/' component={MenuListScreen} exact/> 
+           
       </main>
       <footer class="row center">All right reserved</footer>
     </div>
