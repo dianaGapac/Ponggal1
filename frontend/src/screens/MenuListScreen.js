@@ -1,32 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Menu from  '../components/Menu';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-
-
+import { useSelector,useDispatch } from 'react-redux';
+import { listMenu } from '../actions/menuActions';
 export default function MenuListScreen() {
-  const [menus, setMenus] = useState([]);
-  const [loading,setLoading] = useState(false);
-  const [error,setError] = useState(false);
+
+   const dispatch = useDispatch();
+   const menuList = useSelector( state => state.menuList);
+   const { loading, error, menus} = menuList;
 
 
   useEffect(()=>{
-    const fetchData = async () =>{
-      try{
-        setLoading(true);
-        const {data } = await axios.get('/api/menu');
-        setLoading(false);
-        setMenus(data);
-      } catch(err){
-        setError(err.message);
-        setLoading(false);
-      }
+    dispatch( listMenu());
 
-    };
-    fetchData();
-
-  }, []);
+  }, [dispatch]);
     return (
         <div>
           {loading?(<LoadingBox> </LoadingBox>)  :
